@@ -22,6 +22,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <style>
         /* CSS Reset and Basic Styles */
         :root {
@@ -30,17 +33,20 @@
             --border-color: rgba(255, 255, 255, 0.2);
             --shadow-color: rgba(0, 0, 0, 0.5);
             --text-color: #ffffff;
-            --image-border-color: #3c3c3c;
+            --image-border-color: #7b7b7b;
             --cta-background: rgba(255, 255, 255, 0.9);
             --cta-text-color: #1a1a1a;
             --cta-hover-background: #ffffff;
+            --overlay-color-1: #c19a6b;
+            --overlay-color-2: #e9cca6;
+            --anim-duration: 2s;
         }
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             /* New offroad desert sand look gradient background */
-            background: linear-gradient(to top, #c19a6b 0%, #e9d8a6 100%);
+            background: linear-gradient(to top, #987851 0%, #e9d8a6 100%);
             background-attachment: fixed; /* Ensures the gradient covers the viewport */
             display: flex;
             justify-content: center;
@@ -49,6 +55,34 @@
             padding: 2rem;
             box-sizing: border-box;
             position: relative;
+        }
+
+        #gradient {
+            opacity: 0.8;
+            background: none;
+        }
+
+        #gradient:after,
+        #gradient:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+        }
+
+        #gradient:before {
+            background: linear-gradient(135deg, var(--overlay-color-2) 0%, var(--overlay-color-1) 100%);
+            animation: OpacityAnim var(--anim-duration) ease-in-out 0s infinite alternate;
+        }
+
+        #gradient:after {
+            background: linear-gradient(135deg, var(--overlay-color-1) 0%, var(--overlay-color-2) 100%);
+            animation: OpacityAnim var(--anim-duration) ease-in-out calc(-1 * var(--anim-duration)) infinite alternate;
+        }
+
+        @keyframes OpacityAnim {
+            0%{opacity: 1.0}
+            100%{opacity: 0.0}
         }
 
         /* The Main Glass Card Container */
@@ -215,7 +249,7 @@
     </style>
 </head>
 <body>
-
+    <div id="gradient"></div>
     <!-- Glass Container -->
     <div class="glass-container">
         <div class="product-showcase">
@@ -260,7 +294,7 @@
 
         function changeImage(newSrc) {
             // Add a fade-out effect
-            mainImage.style.opacity = 0;
+            mainImage.style.opacity = 0.5;
 
             setTimeout(() => {
                 // Change the source and parse it for the main image aspect ratio
