@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stow & Go - The Ultimate Spare Tire Holder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Basic Styles */
+        :root {
+            --background-blur: 15px;
+            --card-background: rgba(0, 0, 0, 0.35);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --text-color: #ffffff;
+            --cta-background: rgba(255, 255, 255, 0.9);
+            --cta-text-color: #1a1a1a;
+            --cta-hover-background: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            /* New offroad desert sand look gradient background */
+            background: linear-gradient(to top, #c19a6b 0%, #e9d8a6 100%);
+            background-attachment: fixed; /* Ensures the gradient covers the viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* The Main Glass Card Container */
+        .glass-container {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--card-background);
+            backdrop-filter: blur(var(--background-blur));
+            -webkit-backdrop-filter: blur(var(--background-blur));
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 12px 40px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        /* Product Showcase: Gallery and Info */
+        .product-showcase {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Image Gallery Styling */
+        .product-gallery {
+            flex: 1.2; /* Gives more space to the gallery on large screens */
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .thumbnail-gallery img:hover,
+        .thumbnail-gallery img.active {
+            transform: scale(1.08);
+            border-color: var(--cta-hover-background);
+        }
+
+        /* Product Information Styling */
+        .product-info {
+            flex: 1;
+            padding: 2rem;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .product-info h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 0 0 1rem;
+            line-height: 1.2;
+        }
+
+        .product-info h2 {
+            font-size: 2.0rem;
+            font-weight: 900;
+            margin: 0 0 .5rem;
+            line-height: 1.2;
+        }
+
+        .product-info p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 0 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--cta-background);
+            color: var(--cta-text-color);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            align-self: flex-start;
+            text-shadow: none;
+        }
+
+        .cta-button:hover {
+            background: var(--cta-hover-background);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design Adjustments */
+        @media (min-width: 992px) {
+            .product-showcase {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .product-info h1 {
+                font-size: 2rem;
+            }
+            .product-info p {
+                font-size: 1rem;
+            }
+            .cta-button {
+                align-self: stretch; /* Makes button full-width on mobile */
+            }
+            .thumbnail-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        div.footer-container {
+          position: absolute; /* Positions the div relative to its closest positioned ancestor, or the initial containing block (the <html> element) if no positioned ancestor. */
+          bottom: 0;          /* Aligns the bottom edge of the div with the bottom edge of its containing block. */
+          width: 100%;        /* (Optional) Makes the div span the full width of its container. Adjust as needed. */
+          /* Add other styling properties like background-color, padding, etc. */
+          text-align: center;
+          color: #363330;
+          line-height: .5;
+          font-size: 0.5rem;
+
+          a {
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: #363330;
+          }
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <!-- Glass Container -->
+    <div class="glass-container">
+        <div class="product-showcase">
+
+            <!-- Product Image Gallery -->
+            <div class="product-gallery">
+                <div class="main-image-wrapper">
+                    <img id="main-product-image" src="assets/plastic-spacer-with-foam-center.JPG" alt="Main view of the spare tire holder">
+                </div>
+                <div class="thumbnail-gallery">
+                    <img src="assets/kit-bare.JPG" alt="Spare tire holder angle 1" class="active" onclick="changeImage(this.src)">
+                    <img src="assets/kit-under-trunk-floor.JPG" alt="Spare tire holder angle 2" onclick="changeImage(this.src)">
+                    <img src="assets/spare-tire-mount-assembly-animation-tire-hold-down-spacer.webp" alt="Spare tire holder installed on a vehicle" onclick="changeImage(this.src)">
+                    <img src="assets/spare-mount-riser-quad.webp" alt="Close-up of the spare tire holder's features" onclick="changeImage(this.src)">
+                </div>
+            </div>
+
+            <!-- Product Information and Call to Action -->
+            <div class="product-info">
+                <h2>Toyota Corolla Cross Hybrid (CCH) AWD</h2>
+                <h1>Spare Tire Holder</h1>
+                <p>
+                    Be prepared for anything the road throws at you.<br>Store the missing spare tire under the cargo area with this mounting solution. Just as the road warriors and overlanding gods intended.<br>Designed and made in 🇺🇸.
+                </p>
+                <a href="https://ansonliu.com/store" class="cta-button">Learn More & Buy Now</a>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <div class="footer-container">
+      <p>
+        <a href="https://ansonliu.com/store/policy/">Terms of Service | Privacy Policy</a>
+      </p>
+    </div>
+
+    <script>
+        // Simple script to change the main image when a thumbnail is clicked
+        const mainImage = document.getElementById('main-product-image');
+        const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+
+        function changeImage(newSrc) {
+            // Add a fade-out effect
+            mainImage.style.opacity = 0;
+
+            setTimeout(() => {
+                // Change the source and parse it for the main image aspect ratio
+                const url = new URL(newSrc);
+                const pathParts = url.pathname.split('/');
+                url.pathname = pathParts.join('/');
+                mainImage.src = url.toString();
+                // Add a fade-in effect
+                mainImage.style.opacity = 1;
+            }, 200); // Wait for the fade-out transition to complete
+        }
+
+        mainImage.style.transition = 'opacity 0.2s ease-in-out';
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                // Add active class to the clicked thumbnail
+                thumb.classList.add('active');
+            });
+        });
+
+    </script>
+</body>
+</html>
